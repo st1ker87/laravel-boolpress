@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('guests.home');
-})->name('guests_homepage');
+Route::get('/', 'HomeController@index')->name('guests_homepage');
+
+/* Route::get('/posts', 'PostController@index')->name('posts.index');
+Route::get('/posts/{slug}', 'PostController@show')->name('posts.show'); */
+
+Route::prefix('posts')
+	->group(function(){
+		Route::get('/', 'PostController@index')->name('posts.index');
+		Route::get('/{slug}', 'PostController@show')->name('posts.show');
+	});
 
 Auth::routes();
 

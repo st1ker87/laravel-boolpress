@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title'); /* vacanze in puglia */
             $table->text('content');
-            $table->string('slug'); /* vacanze-in-puglia */
+            $table->string('slug')->unique(); /* vacanze-in-puglia */
             $table->timestamps();
         });
     }
